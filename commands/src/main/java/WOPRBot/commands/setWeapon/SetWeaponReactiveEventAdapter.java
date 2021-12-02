@@ -33,13 +33,19 @@ public class SetWeaponReactiveEventAdapter extends ReactiveEventAdapter {
         var commandName = this.commandRequest.name();
         if (event.getCommandName().equals(commandName)) {
             var userId = event.getInteraction().getUser().getId();
+            var userDisplayName = event.getInteraction().getUser().getUsername();
+            var memberOptional = event.getInteraction().getMember();
+            if (memberOptional.isPresent()) {
+                userDisplayName = memberOptional.get().getDisplayName();
+            }
+
             var commandInteractionOptional = event.getInteraction().getCommandInteraction();
 
             if (commandInteractionOptional.isPresent()) {
                 var response = commandInteractionOptional.get();
 
                 return event.reply(String.format("Response received. User ID %s selected %s (Primary) and %s (Secondary)",
-                        userId.asString(),
+                        userDisplayName,
                         parseValueAndStoreInDb(response, userId.asLong(), "primary_weapon"),
                         parseValueAndStoreInDb(response, userId.asLong(),"secondary_weapon")));
             } else {
