@@ -1,6 +1,7 @@
 package WOPRBot.clients.aws.secretsmanager;
 
 import WOPRBot.clients.aws.secretsmanager.models.DiscordSecret;
+import WOPRBot.clients.aws.secretsmanager.models.DynamoDbSecret;
 import WOPRBot.clients.aws.secretsmanager.models.ServerIdSecret;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
@@ -32,5 +33,12 @@ public class SecretsModule extends AbstractModule {
     public IWOPRSecretsManagerClient<ServerIdSecret>
     provideServerIdSecretsManager(ObjectMapper objectMapper, SecretsManagerClient secretsManagerClient) {
         return new ServerIdSecretsClient(objectMapper, secretsManagerClient);
+    }
+
+    @Provides
+    @Singleton
+    public IWOPRSecretsManagerClient<DynamoDbSecret>
+    provideDynamoDbSecretsManager(ObjectMapper objectMapper, SecretsManagerClient secretsManagerClient) {
+        return new DynamoDbSecretsClient(objectMapper, secretsManagerClient);
     }
 }

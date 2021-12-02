@@ -5,3 +5,7 @@
 plugins {
     id 'WOPRBot.java-library-conventions'
 }
+
+dependencies {
+    implementation project(':clients')
+}

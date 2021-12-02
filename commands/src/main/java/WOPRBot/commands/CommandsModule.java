@@ -1,6 +1,10 @@
 package WOPRBot.commands;
 
+import WOPRBot.clients.aws.dynamodb.IWOPRDynamoDbClient;
+import WOPRBot.clients.aws.dynamodb.models.WOPRRecord;
+import WOPRBot.commands.getWeaponByUser.GetWeaponByUserCommand;
 import WOPRBot.commands.ping.PingCommand;
+import WOPRBot.commands.setWeapon.SetWeaponCommand;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -18,7 +22,10 @@ public class CommandsModule extends AbstractModule {
     @Named("IWOPRBotCommands")
     @Provides
     @Singleton
-    public List<IWOPRBotCommand> provideCommands() {
-        return ImmutableList.of(new PingCommand());
+    public List<IWOPRBotCommand> provideCommands(IWOPRDynamoDbClient<WOPRRecord> woprRecordDdbClient) {
+        return ImmutableList.of(
+                new PingCommand(),
+                new SetWeaponCommand(woprRecordDdbClient),
+                new GetWeaponByUserCommand(woprRecordDdbClient));
     }
 }
