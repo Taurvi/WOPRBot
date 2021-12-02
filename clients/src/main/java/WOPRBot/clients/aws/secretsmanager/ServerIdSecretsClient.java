@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueReques
 import javax.inject.Inject;
 
 public class ServerIdSecretsClient extends WOPRSecretsClient<ServerIdSecret> {
-    private final String SERVER_ID_SECRET_ID = "SERVER_ID_SECRET";
+    private final String SERVER_ID_SECRET_ID = "SERVER_ID_SECRET_PROD";
 
     @Inject
     public ServerIdSecretsClient(ObjectMapper objectMapper, SecretsManagerClient secretsManagerClient) {

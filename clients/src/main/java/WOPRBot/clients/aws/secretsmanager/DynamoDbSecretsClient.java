@@ -11,7 +11,7 @@ import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueReques
 
 @Slf4j
 public class DynamoDbSecretsClient extends WOPRSecretsClient<DynamoDbSecret> {
-    private final String DYNAMO_DB_SECRET_ID = "DYNAMO_DB_SECRETS";
+    private final String DYNAMO_DB_SECRET_ID = "DYNAMO_DB_SECRETS_PROD";
 
     @Inject
     public DynamoDbSecretsClient(ObjectMapper objectMapper, SecretsManagerClient secretsManagerClient) {

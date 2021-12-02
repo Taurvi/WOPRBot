@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 @Slf4j
 public class DiscordSecretsClient extends WOPRSecretsClient<DiscordSecret> {
-    private final String DISCORD_SECRET_ID = "DISCORD_SECRETS";
+    private final String DISCORD_SECRET_ID = "DISCORD_SECRETS_PROD";
 
     @Inject
     public DiscordSecretsClient(ObjectMapper objectMapper, SecretsManagerClient secretsManagerClient) {
